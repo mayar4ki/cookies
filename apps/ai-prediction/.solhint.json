@@ -1,0 +1,24 @@
+{
+    "extends": "solhint:recommended",
+    "rules": {
+        "compiler-version": [
+            "error",
+            ">=0.8.0"
+        ],
+        "func-visibility": [
+            "warn",
+            {
+                "ignoreConstructors": true
+            }
+        ],
+        "not-rely-on-time": "off",
+        "no-empty-blocks": "warn",
+        "contract-name-camelcase": "warn",
+        "const-name-snakecase": "warn",
+        "event-name-camelcase": "warn",
+        "func-name-mixedcase": "warn",
+        "var-name-mixedcase": "warn",
+        "imports-on-top": "warn",
+        "visibility-modifier-order": "warn"
+    }
+}
