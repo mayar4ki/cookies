@@ -3,8 +3,6 @@
 pragma solidity >=0.8.2 <0.9.0;
 
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
@@ -106,7 +104,10 @@ contract AiPredictionV1 is ReentrancyGuard, AntiContractGuard, AdminACL, Functio
     /**
      * @notice Set new fees
      */
-    function setOperatingFees(uint256 _houseFee, uint256 _roundMasterFee) external whenPaused onlyAdmin {
+    function setOperatingFees(
+        uint256 _houseFee,
+        uint256 _roundMasterFee
+    ) external whenPaused onlyAdmin {
         require(_legitFees(_houseFee, _roundMasterFee), "Fee too high");
         houseFee = _houseFee;
         roundMasterFee = _roundMasterFee;
@@ -241,7 +242,10 @@ contract AiPredictionV1 is ReentrancyGuard, AntiContractGuard, AdminACL, Functio
         uint256 _lockTimestampByMinutes,
         uint256 _closeTimestampByMinutes
     ) external whenNotPaused notContract {
-        require(_lockTimestampByMinutes < _closeTimestampByMinutes, "lockTime must be less than closeTime");
+        require(
+            _lockTimestampByMinutes < _closeTimestampByMinutes,
+            "lockTime must be less than closeTime"
+        );
 
         Round storage round = rounds[roundIdCounter];
         round.lockTimestamp = block.timestamp + (_lockTimestampByMinutes * (1 minutes));

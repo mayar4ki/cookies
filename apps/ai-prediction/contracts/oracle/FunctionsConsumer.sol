@@ -32,7 +32,10 @@ abstract contract FunctionsConsumer is FunctionsClient, JavascriptSource {
      * @param args The arguments to pass to the HTTP request
      * @return requestId The ID of the request
      */
-    function sendRequest(uint64 subscriptionId, string[] calldata args) internal returns (bytes32 requestId) {
+    function sendRequest(
+        uint64 subscriptionId,
+        string[] calldata args
+    ) internal returns (bytes32 requestId) {
         FunctionsRequest.Request memory req;
         req.initializeRequestForInlineJavaScript(javascriptSourceCode); // Initialize the request with JS code
         req.setArgs(args); // Set the arguments for the request
